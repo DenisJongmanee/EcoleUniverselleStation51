@@ -11,3 +11,6 @@
     Elle enregistre l'article dans la base de donnée.
     Elle dump les erreurs sur l'enregistrements.
     Elle ne retourne rien.
+
+## feature : remplacementImage
+    Le but de remplacementImage est de télécharger en local les images d'un article puis de pointer les balises images de l'article vers la version locale.
