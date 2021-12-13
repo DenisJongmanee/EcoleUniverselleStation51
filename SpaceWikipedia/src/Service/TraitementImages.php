@@ -38,6 +38,12 @@ class TraitementImages
 
         $article->setHtml($html);
 
+        
+
+    }
+
+    public function telechargeImagesArticle(Article $article)
+    {
         $this->index = 1;
         $this->id = $article->getId();
 
@@ -58,11 +64,8 @@ class TraitementImages
 
                     $this->index += 1;
                 }
-                
-                
             }
         );
-
     }
 
 
