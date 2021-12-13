@@ -19,7 +19,9 @@ class TestesServiceGaetanController extends AbstractController
         #$source->enregistrerArticle($source->getBody('https://fr.wikipedia.org/wiki/Micha%C5%82_Boni'));
 
         $article = $doctrine->getRepository(Article::class)->find(1);
-        $imageManager->trouveImages($article);
+        $imageManager->ajoutCheminImagesLocale($article);
+
+        $article = $doctrine->getRepository(Article::class)->find(1);
         $contenu = $article->getHtml();
         dump($contenu);
         return $this->render('testes_service_gaetan/index.html.twig', [
