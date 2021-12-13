@@ -10,12 +10,17 @@
 </form>
 
 {% if articles|length == 0 %}
-    <div>Aucun article qui répond aux critères de recherche données</div>
+    <div>Aucun article qui répond au critère "{{search}}" de recherche données</div>
 {% endif %}
+
 <div>
-    <ul>
+    <ul class="list-group">
     {% for article in articles %}
-        <li><a href="{{ path('list', article.id) }}" >{{article.titre}}</a></li>  
+        {% if loop.index % 2 == [0] %}
+            <li class="list-group-item list-group-item-secondary"><a href="{{ path('itemRessource', article.id) }}" >{{article.titre}}</a></li>  
+        {% else %}
+            <li><a href="{{ path('list', article.id) }}" >{{article.titre}}</a></li>
+        {% endif %}
     {% endfor %}
     </ul>
 </div>
