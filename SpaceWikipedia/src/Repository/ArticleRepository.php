@@ -19,6 +19,24 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+
+    /**
+    * @return Article[]
+    */
+    public function findAllByTitle(string $title): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT a.id, a.titre
+        FROM App\Entity\Article a
+            WHERE a.titre > :title'
+        )->setParameter('title', $title);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
