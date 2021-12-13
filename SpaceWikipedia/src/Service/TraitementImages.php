@@ -2,7 +2,6 @@
 namespace App\Service;
 
 use App\Entity\Article;
-use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Crap4j;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -42,19 +41,28 @@ class TraitementImages
         $this->index = 1;
         $this->id = $article->getId();
 
-        $crawler->each(
+        $crawler = new HtmlPageCrawler($article->getHtml());
+        $crawler->filter('.ImagesTrouvees')->each(
             function (Crawler $node, $i)
             {
-                $url = $node->attr('src');
-                $titre = "Image" . strval($this->index);
-                $this->telechargeImage($this->id, $titre, $url);
+                $element = $node->getNode(0);
+                if ($element instanceof \DOMElement) {
+                    /** @var \DOMElement $node */
+                    $url =$node->getAttribute('src');
+                    $url = 'https:' . $url;
+                    
+                    # Mettre une sécurité pour mettre l'extension de l'image au lieu de jpg par défault
+                    $titre = "Image" . strval($this->index) . '.jpg';
 
-                $this->index += 1;
+                    $this->telechargeImage($this->id, $titre, $url);
+
+                    $this->index += 1;
+                }
+                
+                
             }
         );
 
-        $this->index->unset();
-        $this->id->unset();
     }
 
 
