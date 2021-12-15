@@ -93,7 +93,7 @@ class TraitementImages
             function (HtmlPageCrawler $subCrawler, $i)
             {
                 $path = "/article" . strval($this->articleId) . "/image" . strval($this->index);
-                dump($path);
+                
                 $subCrawler->setAttribute('src',$path);
 
                 $this->index += 1;
