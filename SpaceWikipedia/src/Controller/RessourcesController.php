@@ -29,6 +29,7 @@ class RessourcesController extends AbstractController
         $articles = $repositoryArticle->findAllByTitle($title);
 
         dump($articles);
+        
 
         return $this->render('ressources/index.html.twig', [
             'articles' => $articles,
