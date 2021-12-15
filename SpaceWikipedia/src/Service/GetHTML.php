@@ -11,6 +11,8 @@ use App\Entity\Article;
 class GetHTML
 {
     private $client;
+    private $doctrine;
+    private $validator;
 
     public function __construct(HttpClientInterface $client, ManagerRegistry $doctrine, ValidatorInterface $validator)
     {
