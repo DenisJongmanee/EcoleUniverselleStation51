@@ -25,15 +25,15 @@ class ArticleRepository extends ServiceEntityRepository
     */
     public function findAllByTitle(string $title): array
     {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT a.id, a.titre
-        FROM App\Entity\Article a
-            WHERE a.titre > :title'
-        )->setParameter('title', $title);
-
-        // returns an array of Product objects
+        $qb = $this->createQueryBuilder('a');
+        $qb->join('a.categories', 'c')
+            ->where($qb->expr()->orX(
+                $qb->expr()->like('a.titre', ':titre'),
+                $qb->expr()->like('c.libelle', ':libelle')
+            ))
+            ->setParameters(['titre'=> '%'.$title.'%', 'libelle' => '%'.$title.'%']);
+        $query = $qb->getQuery();
+        
         return $query->getResult();
     }
 
