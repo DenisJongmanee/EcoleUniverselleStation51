@@ -19,13 +19,9 @@
 {% endif %}
 
 <div>
-    <ul class="list-group">
+    <ul>
     {% for article in articles %}
-        {% if loop.index % 2 == [0] %}
-            <li class="list-group-item list-group-item-secondary"><a href="{{ path('itemRessource', article.id) }}" >{{article.titre}}</a></li>  
-        {% else %}
-            <li><a href="{{ path('list', article.id) }}" >{{article.titre}}</a></li>
-        {% endif %}
+        <li><a href="{{ path('itemRessource', { 'id': article.id }) }}">{{article.titre}}</a></li>
     {% endfor %}
     </ul>
 </div>

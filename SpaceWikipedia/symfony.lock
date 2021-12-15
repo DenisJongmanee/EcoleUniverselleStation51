@@ -488,6 +488,9 @@
     "symfony/security-csrf": {
         "version": "6.1.x-dev"
     },
+    "symfony/security-guard": {
+        "version": "v5.4.0"
+    },
     "symfony/security-http": {
         "version": "6.1.x-dev"
     },
@@ -582,6 +585,9 @@
     },
     "twig/twig": {
         "version": "v3.3.4"
+    },
+    "wa72/htmlpagedom": {
+        "version": "v2.0.1"
     },
     "webmozart/assert": {
         "version": "1.10.0"
