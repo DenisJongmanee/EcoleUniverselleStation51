@@ -27,10 +27,10 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a');
         $qb->join('a.categories', 'c')
-            ->where(
+            ->where($qb->expr()->orX(
                 $qb->expr()->like('a.titre', ':titre'),
                 $qb->expr()->like('c.libelle', ':libelle')
-            )
+            ))
             ->setParameters(['titre'=> '%'.$title.'%', 'libelle' => '%'.$title.'%']);
         $query = $qb->getQuery();
         
