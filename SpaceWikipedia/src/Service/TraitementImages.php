@@ -2,34 +2,42 @@
 namespace App\Service;
 
 use App\Entity\Article;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Path;
-use Symfony\Component\DomCrawler\Crawler;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Symfony\Component\Filesystem\Path;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 
 class TraitementImages
 {
     private $fileManager;
     private $doctrine;
+    private $client;
 
 
-    public function __construct(Filesystem $fileManager, ManagerRegistry $doctrine)
+    public function __construct(HttpClientInterface $client, Filesystem $fileManager, ManagerRegistry $doctrine)
     {
+        $this->client = $client;
         $this->fileManager = $fileManager;
         $this->doctrine = $doctrine;
     }
 
     public function telechargeImage(int $articleId, string $titre, string $url)
     {
-        $pathDossier = "..\images\Article N°" . strval($articleId);
+        $pathDossier = "..\images\ArticleN" . strval($articleId);
         if (! $this->fileManager->exists($pathDossier))
         {
             $this->fileManager->mkdir($pathDossier);
         }
-        $donneeImage = file_get_contents($url);
+        $reponse = $this->client->request('GET', $url);
+
+        #$donneeImage = file_get_contents($url);
+
+        $donneeImage = $reponse->getContent();
+
         $pathImage = $pathDossier . "\\" . $titre;
         file_put_contents($pathImage,$donneeImage);
     }
@@ -84,7 +92,8 @@ class TraitementImages
         $crawler->filter('.ImagesTrouvees')->each(
             function (HtmlPageCrawler $subCrawler, $i)
             {
-                $path = "..\images\Article N°" . strval($this->articleId) . "\Image" . strval($this->index) . '.jpg';
+                $path = "/article" . strval($this->articleId) . "/image" . strval($this->index);
+                dump($path);
                 $subCrawler->setAttribute('src',$path);
 
                 $this->index += 1;
@@ -93,10 +102,14 @@ class TraitementImages
         #potentielle fonction (utilisée 2 fois)
         $html = $crawler->saveHTML();
 
+        #dump($html);
+
         $article->setHtml($html);
 
         $manager = $this->doctrine->getManager();
         $manager->persist($article);
         $manager->flush();
     }
+
+    
 }
