@@ -30,3 +30,9 @@
 ### ImageController
     Ce controller utilise la route '/article{articleId}/image{imageId}'.
     Il met a disposition des requêttes GET l'image imageId de l'article N° articleId.
+
+## feature : remplacementLiensMorts
+    Le but de remplacementLiensMorst est de retirer les liens morts d'un article
+### remplacementLiens(Article $article)
+    Cette fonction demande un article.
+    Elle va retirer tout les liens du html de l'article sans supprimer l'html interne des anciennes balises <a>.
