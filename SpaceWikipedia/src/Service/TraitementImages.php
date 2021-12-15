@@ -111,5 +111,13 @@ class TraitementImages
         $manager->flush();
     }
 
-    
+
+    public function remplacementImagesArticle(Article $article)
+    {
+        set_time_limit(300);
+
+        $this->trouveImages($article);
+        $this->telechargeImagesArticle($article);
+        $this->ajoutCheminImagesLocale($article);
+    }
 }

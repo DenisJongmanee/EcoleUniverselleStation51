@@ -14,6 +14,10 @@
 
 ## feature : remplacementImage
     Le but de remplacementImage est de télécharger en local les images d'un article puis de pointer les balises images de l'article vers la version locale.
+### remplacementImagesArticle(Article $article)
+    Cette fonction demande un article.
+    Elle utilise trouveImages() puis telechargeImagesArticle() et ajoutCheminImagesLocale().
+    Elle remplace toutes les images d'un article par une version locale.
 ### trouveImages(Article $article)
     Cette fonction demande un article.
     Elle va ajouter la classe css 'ImagesTrouvees' dans toute les balises img de l'html de l'article.
