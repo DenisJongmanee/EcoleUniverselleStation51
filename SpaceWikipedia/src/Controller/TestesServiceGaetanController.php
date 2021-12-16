@@ -10,6 +10,7 @@ use App\Service\GetHTML;
 use App\Service\TraitementImages;
 use Symfony\Component\DomCrawler\Crawler;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Service\GetCategorie;
 
 class TestesServiceGaetanController extends AbstractController
 {
@@ -17,9 +18,11 @@ class TestesServiceGaetanController extends AbstractController
     public function index(GetHTML $source, TraitementImages $imageManager, ManagerRegistry $doctrine): Response
     {
         #$source->enregistrerArticle($source->getBody('https://fr.wikipedia.org/wiki/Rue_de_Tocqueville'));
-
         $article = $doctrine->getRepository(Article::class)->find(6);
-
+        
+        // $categorieManager = new GetCategorie($doctrine, $article);
+        // $categorieManager->ajoutCategories();
+       
         #$imageManager->trouveImages($article);
         #$imageManager->telechargeImagesArticle($article);
 
