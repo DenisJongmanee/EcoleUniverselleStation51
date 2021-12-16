@@ -17,6 +17,8 @@ class ScrapperWikipedia
 
     public function scrapListe(array $listeUrl)
     {
+        set_time_limit(1800);
+
         foreach ($listeUrl as $url)
         {
             $html = $this->htmlManager->getBody($url);
