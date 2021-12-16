@@ -7,14 +7,11 @@ use App\Service\GetHTML;
 use App\Service\TraitementLiens;
 use App\Service\TraitementImages;
 use Doctrine\Persistence\ManagerRegistry;
-<<<<<<< HEAD
-use App\Service\GetCategorie;
-=======
 use Symfony\Component\DomCrawler\Crawler;
+use App\Service\GetCategorie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
->>>>>>> 2a646d069c4476ee27ea77773ac81db4731ac733
 
 class TestesServiceGaetanController extends AbstractController
 {
@@ -23,6 +20,9 @@ class TestesServiceGaetanController extends AbstractController
     {
         $article = $doctrine->getRepository(Article::class)->find(6);
         #$article = $lienManager->remplacementLiens($article);
+
+        #$imageManager->trouveImages($article);
+        #$imageManager->telechargeImagesArticle($article);
         
         $contenu = $article->getHtml();
 
@@ -40,8 +40,7 @@ class TestesServiceGaetanController extends AbstractController
         // $categorieManager = new GetCategorie($doctrine, $article);
         // $categorieManager->ajoutCategories();
        
-        #$imageManager->trouveImages($article);
-        #$imageManager->telechargeImagesArticle($article);
+        
 
         $imageManager->ajoutCheminImagesLocale($article);
 
