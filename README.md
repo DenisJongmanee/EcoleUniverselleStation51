@@ -14,6 +14,10 @@
 
 ## feature : remplacementImage
     Le but de remplacementImage est de télécharger en local les images d'un article puis de pointer les balises images de l'article vers la version locale.
+### remplacementImagesArticle(Article $article)
+    Cette fonction demande un article.
+    Elle utilise trouveImages() puis telechargeImagesArticle() et ajoutCheminImagesLocale().
+    Elle remplace toutes les images d'un article par une version locale.
 ### trouveImages(Article $article)
     Cette fonction demande un article.
     Elle va ajouter la classe css 'ImagesTrouvees' dans toute les balises img de l'html de l'article.
@@ -30,3 +34,9 @@
 ### ImageController
     Ce controller utilise la route '/article{articleId}/image{imageId}'.
     Il met a disposition des requêttes GET l'image imageId de l'article N° articleId.
+
+## feature : remplacementLiensMorts
+    Le but de remplacementLiensMorst est de retirer les liens morts d'un article
+### remplacementLiens(Article $article)
+    Cette fonction demande un article.
+    Elle va retirer tout les liens du html de l'article sans supprimer l'html interne des anciennes balises <a>.

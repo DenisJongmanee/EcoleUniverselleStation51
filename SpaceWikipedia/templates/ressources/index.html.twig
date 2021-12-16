@@ -3,10 +3,15 @@
 {% block title %}Hello RessourcesController!{% endblock %}
 
 {% block body %}
-
 <form>
-    <input type="text" name="search" id="search" placeholder="Entrez un mot clé" value="{{search}}" required />
-    <input type="submit" value="Rechercher"/>
+<div class="w-25 p-3">
+<div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Entrez un mot clé" value="{{search}}" required />
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button">Rechercher</button>
+        </div>
+    </div>
+</div>
 </form>
 
 {% if articles|length == 0 %}
