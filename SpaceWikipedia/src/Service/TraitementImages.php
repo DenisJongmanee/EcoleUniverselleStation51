@@ -119,5 +119,6 @@ class TraitementImages
         $this->trouveImages($article);
         $this->telechargeImagesArticle($article);
         $this->ajoutCheminImagesLocale($article);
+        return $article;
     }
 }
