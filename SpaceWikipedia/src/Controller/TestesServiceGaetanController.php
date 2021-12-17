@@ -8,6 +8,7 @@ use App\Service\TraitementLiens;
 use App\Service\TraitementImages;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Service\GetCategorie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,9 @@ class TestesServiceGaetanController extends AbstractController
     {
         $article = $doctrine->getRepository(Article::class)->find(6);
         #$article = $lienManager->remplacementLiens($article);
+
+        #$imageManager->trouveImages($article);
+        #$imageManager->telechargeImagesArticle($article);
         
         $contenu = $article->getHtml();
 
@@ -31,11 +35,12 @@ class TestesServiceGaetanController extends AbstractController
     function testImage(GetHTML $source, TraitementImages $imageManager, ManagerRegistry $doctrine)
     {
         #$source->enregistrerArticle($source->getBody('https://fr.wikipedia.org/wiki/Rue_de_Tocqueville'));
-
         $article = $doctrine->getRepository(Article::class)->find(6);
-
-        #$imageManager->trouveImages($article);
-        #$imageManager->telechargeImagesArticle($article);
+        
+        // $categorieManager = new GetCategorie($doctrine, $article);
+        // $categorieManager->ajoutCategories();
+       
+        
 
         $imageManager->ajoutCheminImagesLocale($article);
 
