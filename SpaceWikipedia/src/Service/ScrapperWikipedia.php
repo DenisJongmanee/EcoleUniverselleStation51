@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+
 use Doctrine\Persistence\ManagerRegistry;
 
 class ScrapperWikipedia
@@ -35,7 +36,7 @@ class ScrapperWikipedia
             #colecteur_erreur est la pour du debug si une exception vraiment critique est lancée.
             try {
                 $donneeArticle = $this->htmlManager->getBody($url);
-                $article = $this->htmlManager->enregistrerArticle($donneeArticle['html'],$donneeArticle['titre']);
+                $article = $this->htmlManager->enregistrerArticle($donneeArticle['html'], $donneeArticle['titre'], $url);
             } catch (\Throwable $th) {
                 array_push($colecteur_erreur,$th);
                 continue;
@@ -54,7 +55,8 @@ class ScrapperWikipedia
                 $this->cleanManager->cleanText($article);
                 $this->cleanManager->addCss($article);
 
-            } catch (\Throwable $th) {
+            
+            } catch (ImageException $th) {
                 array_push($colecteur_erreur,$th);
                 
                 #nettoyeur de mémoire

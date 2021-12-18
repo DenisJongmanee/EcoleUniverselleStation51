@@ -34,6 +34,11 @@ class Article
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $url;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -91,6 +96,18 @@ class Article
         if ($this->categories->removeElement($category)) {
             $category->removeArticle($this);
         }
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }

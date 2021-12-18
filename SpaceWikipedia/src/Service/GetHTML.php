@@ -34,12 +34,13 @@ class GetHTML
         return array('html' => $contenu, 'titre' => $titre);
     }
 
-    public function enregistrerArticle($html, $titre = "")
+    public function enregistrerArticle($html, $titre = "", $url="")
     {
         
         $article = new Article;
         $article->setHtml($html);
         $article->setTitre($titre);
+        $article->setUrl($url);
 
         $erreurs = $this->validator->validate($article);
         if (count($erreurs) == 0) {

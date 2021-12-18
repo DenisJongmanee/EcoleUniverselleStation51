@@ -52,3 +52,12 @@
         -suppression des liens morts
         -rangement dans un système de catégories
     Il y a une sécurité supprimant les articles soulevants des erreurs.
+
+## feature : nouveauxArticles
+    Le but de cette fonctionnalité est de générés des urls qui n'ont pas encore été scrappées.
+### listeUrls(int $nombre)
+    Cette fonction demande un int.
+    Elle va retourner une liste de string url qui n'ont pas encore été scrappé par l'application.
+### urlAleatoire()
+    Cette fonction ne demande rien.
+    Elle va retourner un string url aléatoire issus du site wikipedia.

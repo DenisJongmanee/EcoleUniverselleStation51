@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Service\CleanArticle;
+use App\Service\FindUrls;
 use App\Service\GetHTML;
 use App\Service\TraitementLiens;
 use App\Service\TraitementImages;
@@ -18,21 +19,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TestesServiceGaetanController extends AbstractController
 {
     #[Route('/testes/service/gaetan', name: 'testes_service_gaetan')]
-    public function index(TraitementLiens $lienManager, ManagerRegistry $doctrine, ScrapperWikipedia $scrapper): Response
+    public function index(TraitementLiens $lienManager, ManagerRegistry $doctrine, ScrapperWikipedia $scrapper, FindUrls $urlManager): Response
     {
-        $article = $doctrine->getRepository(Article::class)->find(6);
+        #$article = $doctrine->getRepository(Article::class)->find(6);
         #$article = $lienManager->remplacementLiens($article);
 
         #$imageManager->trouveImages($article);
         #$imageManager->telechargeImagesArticle($article);
-        
+        /*
+        $liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
+        $erreurListe = $scrapper->scrapListe($liste);
+
+        #dump important : debug des erreurs
+        dump($erreurListe);
+     */   
+
+        #dump($urlManager->listeUrls(10)))
+
+
         $liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
         $erreurListe = $scrapper->scrapListe($liste);
 
         #dump important : debug des erreurs
         dump($erreurListe);
 
-        $article = $doctrine->getRepository(Article::class)->find(25);
+
+        $article = $doctrine->getRepository(Article::class)->find(27);
         $contenu = $article->getHtml();
 
         return $this->render('testes_service_gaetan/index.html.twig', [
