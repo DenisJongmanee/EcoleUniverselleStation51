@@ -25,10 +25,13 @@ class TestesServiceGaetanController extends AbstractController
         #$imageManager->trouveImages($article);
         #$imageManager->telechargeImagesArticle($article);
         
-        $liste = array('https://fr.wikipedia.org/wiki/Harbor_Club_Condominiums', 'https://fr.wikipedia.org/wiki/Heratemita_chrysozona','https://fr.wikipedia.org/wiki/Ambrogio_Antonio_Alciati', 'https://fr.wikipedia.org/wiki/Zinasco','https://fr.wikipedia.org/wiki/Tigernmas');
-
-        $scrapper->scrapListe($liste);
+        $liste = array('https://fr.wikipedia.org/wiki/The_60th_Anniversary_Thai_Cycling_Association', 'https://fr.wikipedia.org/wiki/Finale_de_la_Coupe_des_clubs_champions_europ%C3%A9ens_1971-1972', 'https://fr.wikipedia.org/wiki/Institut_Fraunhofer_pour_les_t%C3%A9l%C3%A9communications');
         
+        $erreurListe = $scrapper->scrapListe($liste);
+
+        #dump important : debug des erreurs
+        dump($erreurListe);
+
         $article = $doctrine->getRepository(Article::class)->find(20);
         $contenu = $article->getHtml();
 
