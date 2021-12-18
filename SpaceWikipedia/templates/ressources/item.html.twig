@@ -3,6 +3,35 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
+<style>
+    .tocnumber {
+        color:red;
+    }
+    .title, h2 {
+        text-align:center;
+    }
+    .thumb {
+        clear:right;
+        float:right;
+        margin-left:10%;
+        margin-bottom:5%
+    }
+    .nopuce {
+        list-style: none;
+    }
 
-{{article}}
+    h4, h3, h2{
+        margin : 2%
+    }
+    .catlinks {
+        margin-top : 2%;
+        
+    }
+    
+
+</style>
+    <div class="container">
+        <h1 class="display-1 title">{{article.titre}}</h1>
+        {{article.html| raw}}
+    </div>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Service\CleanArticle;
 use App\Service\GetHTML;
 use App\Service\TraitementLiens;
 use App\Service\TraitementImages;
@@ -40,14 +41,15 @@ class TestesServiceGaetanController extends AbstractController
         ]);
     }
 
-    function testImage(GetHTML $source, TraitementImages $imageManager, ManagerRegistry $doctrine)
+    function testImage(GetHTML $source, CleanArticle $cleanArticle, TraitementImages $imageManager, ManagerRegistry $doctrine)
     {
         #$source->enregistrerArticle($source->getBody('https://fr.wikipedia.org/wiki/Rue_de_Tocqueville'));
         $article = $doctrine->getRepository(Article::class)->find(6);
         
         // $categorieManager = new GetCategorie($doctrine, $article);
         // $categorieManager->ajoutCategories();
-       
+        // $cleanManager->cleanText($article);
+        // $cleanManager->addCss($article);
         
 
         $imageManager->ajoutCheminImagesLocale($article);

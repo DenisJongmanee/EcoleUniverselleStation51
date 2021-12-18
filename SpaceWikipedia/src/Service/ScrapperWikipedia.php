@@ -9,13 +9,15 @@ class ScrapperWikipedia
     private $htmlManager;
     private $imageManager;
     private $lienManager;
+    private $cleanManager;
     private $doctrine;
 
-    public function __construct(GetHTML $htmlManager, TraitementImages $imageManager, TraitementLiens $lienManager, ManagerRegistry $doctrine)
+    public function __construct(GetHTML $htmlManager, TraitementImages $imageManager, TraitementLiens $lienManager, CleanArticle $cleanManager, ManagerRegistry $doctrine)
     {
         $this->htmlManager = $htmlManager;
         $this->imageManager = $imageManager;
         $this->lienManager = $lienManager;
+        $this->cleanManager = $cleanManager;
         $this->doctrine = $doctrine;
     }
 
@@ -36,7 +38,6 @@ class ScrapperWikipedia
                 $article = $this->htmlManager->enregistrerArticle($donneeArticle['html'],$donneeArticle['titre']);
             } catch (\Throwable $th) {
                 array_push($colecteur_erreur,$th);
-
                 continue;
                 #throw $th; si bug incompris.
             }
@@ -44,15 +45,18 @@ class ScrapperWikipedia
 
             try {
                 $article = $this->imageManager->remplacementImagesArticle($article);
-
+                
                 $article = $this->lienManager->remplacementLiens($article);
-
+                
                 $categorieManager = new GetCategorie($this->doctrine, $article);
                 $categorieManager->ajoutCategories();
 
+                $this->cleanManager->cleanText($article);
+                $this->cleanManager->addCss($article);
+
             } catch (\Throwable $th) {
                 array_push($colecteur_erreur,$th);
-
+                
                 #nettoyeur de mémoire
                 $pathDossier = "..\images\ArticleN" . strval($article->getId());
                 foreach(glob($pathDossier . '/Image*') as $file) { 
