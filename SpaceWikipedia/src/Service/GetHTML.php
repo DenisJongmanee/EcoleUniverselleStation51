@@ -28,7 +28,10 @@ class GetHTML
         $crawler = new Crawler($html);
         $contenu = $crawler->filter('#bodyContent')->html();
 
-        return $contenu;
+        $crawler = new Crawler($html);
+        $titre = $crawler->filter('#firstHeading')->text();
+
+        return array('html' => $contenu, 'titre' => $titre);
     }
 
     public function enregistrerArticle($html, $titre = "")
