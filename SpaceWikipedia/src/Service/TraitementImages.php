@@ -5,6 +5,7 @@ use App\Entity\Article;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 use Symfony\Component\Filesystem\Path;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -69,8 +70,14 @@ class TraitementImages
                 if ($element instanceof \DOMElement) {
                     /** @var \DOMElement $node */
                     $url =$node->getAttribute('src');
-                    $url = 'https:' . $url;
                     
+                    if ( str_starts_with($url, 'https://'))
+                    {
+                        throw new ImageException("L'article contient des images non gérées");
+                    }
+
+                    $url = 'https:' . $url;
+
                     # Mettre une sécurité pour mettre l'extension de l'image au lieu de jpg par défault
                     $titre = "Image" . strval($this->index) . '.jpg';
 

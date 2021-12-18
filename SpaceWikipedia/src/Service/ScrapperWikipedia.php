@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+
 use Doctrine\Persistence\ManagerRegistry;
 
 class ScrapperWikipedia
@@ -50,7 +51,7 @@ class ScrapperWikipedia
                 $categorieManager = new GetCategorie($this->doctrine, $article);
                 $categorieManager->ajoutCategories();
 
-            } catch (\Throwable $th) {
+            } catch (ImageException $th) {
                 array_push($colecteur_erreur,$th);
 
                 #nettoyeur de mémoire

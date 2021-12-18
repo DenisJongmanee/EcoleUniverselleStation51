@@ -26,14 +26,21 @@ class TestesServiceGaetanController extends AbstractController
         #$imageManager->trouveImages($article);
         #$imageManager->telechargeImagesArticle($article);
         /*
-        $liste = array('https://fr.wikipedia.org/wiki/Culture_atestine');
+        $liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
         $erreurListe = $scrapper->scrapListe($liste);
 
         #dump important : debug des erreurs
         dump($erreurListe);
-        */
+     */   
 
-        dump($urlManager->listeUrls(10));
+        #dump($urlManager->listeUrls(10)))
+
+
+        $liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
+        $erreurListe = $scrapper->scrapListe($liste);
+
+        #dump important : debug des erreurs
+        dump($erreurListe);
 
 
         $article = $doctrine->getRepository(Article::class)->find(27);
