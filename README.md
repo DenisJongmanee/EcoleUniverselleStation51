@@ -40,3 +40,14 @@
 ### remplacementLiens(Article $article)
     Cette fonction demande un article.
     Elle va retirer tout les liens du html de l'article sans supprimer l'html interne des anciennes balises <a>.
+
+## feature : scrapper
+    Le but de scrapper est de récuppéré des articles wikipedia et de les enregistrer en local sur le serveur.
+### scrapListe(array $listeUrl)
+    Cette fonction demande un array de string.
+    Elle va scapper les articles wikipedia dont les urls sont présents dans la liste.
+    Opérations de scrapping actuelles:
+        -récupération du html et du titre
+        -récupération des images en locales
+        -suppression des liens morts
+        -rangement dans un système de catégories
