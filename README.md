@@ -51,3 +51,4 @@
         -récupération des images en locales
         -suppression des liens morts
         -rangement dans un système de catégories
+    Il y a une sécurité supprimant les articles soulevants des erreurs.
