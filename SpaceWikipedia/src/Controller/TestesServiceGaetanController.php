@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Service\GetHTML;
 use App\Service\TraitementLiens;
 use App\Service\TraitementImages;
+use App\Service\ScrapperWikipedia;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +16,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TestesServiceGaetanController extends AbstractController
 {
     #[Route('/testes/service/gaetan', name: 'testes_service_gaetan')]
-    public function index(TraitementLiens $lienManager, ManagerRegistry $doctrine): Response
+    public function index(TraitementLiens $lienManager, ManagerRegistry $doctrine, ScrapperWikipedia $scrapper): Response
     {
-        $article = $doctrine->getRepository(Article::class)->find(6);
-        #$article = $lienManager->remplacementLiens($article);
         
+        $liste = array('https://fr.wikipedia.org/wiki/Harbor_Club_Condominiums', 'https://fr.wikipedia.org/wiki/Heratemita_chrysozona','https://fr.wikipedia.org/wiki/Ambrogio_Antonio_Alciati', 'https://fr.wikipedia.org/wiki/Zinasco','https://fr.wikipedia.org/wiki/Tigernmas');
+
+        $scrapper->scrapListe($liste);
+        
+        $article = $doctrine->getRepository(Article::class)->find(20);
         $contenu = $article->getHtml();
 
         return $this->render('testes_service_gaetan/index.html.twig', [

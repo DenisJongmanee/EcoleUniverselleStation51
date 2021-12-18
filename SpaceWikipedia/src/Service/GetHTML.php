@@ -44,7 +44,7 @@ class GetHTML
             $manager = $this->doctrine->getManager();
             $manager->persist($article);
             $manager->flush();
-            
+            return $article;
         } else {
             dump(array("erreurs enregistrement article" => $erreurs));
         }
