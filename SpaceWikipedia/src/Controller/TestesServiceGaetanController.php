@@ -25,7 +25,7 @@ class TestesServiceGaetanController extends AbstractController
         #$imageManager->trouveImages($article);
         #$imageManager->telechargeImagesArticle($article);
         
-        $liste = array('https://fr.wikipedia.org/wiki/(17801)_Zelkowitz');
+        $liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
         $erreurListe = $scrapper->scrapListe($liste);
 
         #dump important : debug des erreurs
