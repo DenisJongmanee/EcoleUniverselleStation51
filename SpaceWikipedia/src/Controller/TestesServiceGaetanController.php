@@ -33,7 +33,7 @@ class TestesServiceGaetanController extends AbstractController
         dump($erreurListe);
         */
 
-        $urlManager->urlAleatoire();
+        dump($urlManager->listeUrls(10));
 
 
         $article = $doctrine->getRepository(Article::class)->find(27);
