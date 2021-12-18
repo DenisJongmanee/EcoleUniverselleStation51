@@ -1,9 +1,4 @@
 security:
-    password_hashers:
-        App\Entity\User:
-            algorithm: 'auto'
-
-
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
