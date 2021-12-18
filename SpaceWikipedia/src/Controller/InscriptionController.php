@@ -28,6 +28,8 @@ class InscriptionController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
+
+            return $this->redirectToRoute('connexion');
         }
 
         return $this->render('Inscription/index.html.twig', [
