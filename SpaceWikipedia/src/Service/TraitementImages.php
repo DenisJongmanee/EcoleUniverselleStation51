@@ -26,7 +26,7 @@ class TraitementImages
         $this->doctrine = $doctrine;
     }
 
-    public function telechargeImage(int $articleId, string $titre, string $url)
+    private function telechargeImage(int $articleId, string $titre, string $url)
     {
         $pathDossier = "..\images\ArticleN" . strval($articleId);
         if (! $this->fileManager->exists($pathDossier))
@@ -43,7 +43,7 @@ class TraitementImages
         file_put_contents($pathImage,$donneeImage);
     }
 
-    public function trouveImages(Article $article)
+    private function trouveImages(Article $article)
     {
         $crawler = new HtmlPageCrawler($article->getHtml());
         $crawler->filter('img')->addClass("ImagesTrouvees");
@@ -57,7 +57,7 @@ class TraitementImages
 
     }
 
-    public function telechargeImagesArticle(Article $article)
+    private function telechargeImagesArticle(Article $article)
     {
         $this->index = 1;
         $this->id = $article->getId();
@@ -89,7 +89,7 @@ class TraitementImages
         );
     }
 
-    public function ajoutCheminImagesLocale(Article $article)
+    private function ajoutCheminImagesLocale(Article $article)
     {
         $this->index = 1;
         $this->articleId = $article->getId();

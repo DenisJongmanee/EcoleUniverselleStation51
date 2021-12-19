@@ -64,7 +64,7 @@ class TestesServiceGaetanController extends AbstractController
         // $cleanManager->addCss($article);
         
 
-        $imageManager->ajoutCheminImagesLocale($article);
+        // $imageManager->ajoutCheminImagesLocale($article);
 
         $article = $doctrine->getRepository(Article::class)->find(6);
         $contenu = $article->getHtml();

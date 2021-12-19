@@ -33,7 +33,7 @@ class GetCategorie
         );
     }
 
-    public function createCategorie(string $libelle)
+    private function createCategorie(string $libelle)
     {
         //savoir si la catégorie existe déjà
         $categorie = $this->doctrine->getRepository(Categorie::class)->findOneBy(['libelle'=>$libelle]);
