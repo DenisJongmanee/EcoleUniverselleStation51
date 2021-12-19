@@ -14,4 +14,10 @@ class ConnexionController extends AbstractController
         return $this->render('connexion/index.html.twig');
         
     }
+
+    #[Route('/deconnexion', name: 'deconnexion')]
+    public function logout()
+    {
+        return $this->render('accueil/index.html.twig');
+    }
 }
