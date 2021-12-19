@@ -61,3 +61,24 @@
 ### urlAleatoire()
     Cette fonction ne demande rien.
     Elle va retourner un string url aléatoire issus du site wikipedia.
+
+
+## feature : getCategorie
+
+### createCategorie(string $libelle)
+    Créer la catégorie si elle n'existe pas et va faire le lien avec l'attribut article dans la base de données 
+### ajoutCategories()
+    Filtrer l'html de l'article pour récupérer ses catégories et faire appel à createCategorie() pour les insérer dans la base de donnéess
+
+## feature : cleanArticle
+
+### l'attribut BLOCKSTOBEREMOVED est une constante qui possède la liste des block à enlever
+
+### cleanText(Article $article)
+    Cette procédure va enlever tous les blocs listés dans la constante BLOCKSTOBEREMOVED
+    Ces blocs sont considérés inutiles pour la ressource du projet
+    Modification de l'article qui dans la base de données
+
+### addCss(Article $article)
+    Cette procédure va ajouter les classes CSS Bootstrap voulu pour la mise en forme de l'article
+    Modification de l'article qui dans la base de données
