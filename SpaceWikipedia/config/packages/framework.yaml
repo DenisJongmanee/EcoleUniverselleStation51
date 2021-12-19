@@ -17,6 +17,11 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        default_options:
+            headers:
+                'User-Agent': 'SpaceWikipediaBot/0.2 Symfony/5.4'
+
 when@test:
     framework:
         test: true

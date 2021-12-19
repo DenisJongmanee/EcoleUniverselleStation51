@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche sur {{search|upper}}{% endblock %}
+
+{% block body %}
+<form>
+<div class="w-25 p-3">
+<div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Entrez un mot clé" name="search" id="search" value="{{search}}" required />
+        <div class="input-group-append">
+            <input class="btn btn-outline-primary" type="submit" value="Rechercher"/>
+        </div>
+    </div>
+</div>
+</form>
+
+{% if articles|length == 0 %}
+    <div class="message mx-3"> <h3 class="h3">Aucun article qui répond au critère "{{search}}".</h3></div>
+{% else %}
+    <div class="message mx-3"><h3 class="h3">Nous avons trouvé {{articles|length}} article(s)</h3></div>    
+{% endif %}
+
+<div>
+    <ul class="list-group">
+    {% for article in articles %}
+        <li class="list-group-item list-group-item-info mx-3"><a href="{{ path('itemRessource', { 'id': article.id }) }}" class="list-group-item bg-primary bg-opacity-25 link-dark">{{article.titre}}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

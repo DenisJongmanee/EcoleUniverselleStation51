@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilController!{% endblock %}
+
+{% block body %}
+<style>
+	#alignement{
+		margin-top: 15%;
+		text-align: center;
+		color: #264653;
+		font-family: serif;
+	}
+	</style>
+
+<h1 id="alignement">Ecole Universelle Station 51</h1>
+		<div class="container">
+			<form action="{{ path('listRessources')}}">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Recherche" name="search" id="search"/>
+					<div class="input-group-append">
+						<input class="btn btn-outline-primary" type="submit" value="Rechercher"/>
+					</div>
+				</div>
+			<form>
+		</div>
+
+{% endblock %}
