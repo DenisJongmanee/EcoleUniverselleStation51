@@ -47,7 +47,7 @@ class CleanArticle
             );
         }
         $html = $crawler->saveHTML();
-        dump($html);
+        
         $article->setHtml($html);
 
         $manager = $this->doctrine->getManager();
