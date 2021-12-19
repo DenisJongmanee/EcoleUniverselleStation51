@@ -61,3 +61,10 @@
 ### urlAleatoire()
     Cette fonction ne demande rien.
     Elle va retourner un string url aléatoire issus du site wikipedia.
+
+## feature : AdminFixture
+    Le but de cette fonctgionnalité est de générer un admin en base de donnée à l'installation de l'application
+### AppFixtures.php
+    Cette classe déclare une commande php.
+    Cette commande créer un Administateur par défaut en base de données.
+    Administrateur pas défaut : admin@gmail.com adminadmin
