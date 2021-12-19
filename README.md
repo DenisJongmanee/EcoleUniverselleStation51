@@ -97,3 +97,9 @@ Il est utilisé pour scrapper un lien au hasard de wikipédia
 
 ## Exception : ImageException
     Permet de redéfinir le nom de l'exception. Aucune réécriture sur les méthodes
+## feature : AdminFixture
+    Le but de cette fonctgionnalité est de générer un admin en base de donnée à l'installation de l'application
+### AppFixtures.php
+    Cette classe déclare une commande php.
+    Cette commande créer un Administateur par défaut en base de données.
+    Administrateur pas défaut : admin@gmail.com adminadmin
