@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Scrapper{% endblock %}
+
+{% block Retour %}
+<li class="nav-item">
+    <a class="nav-link active" href="/">Retour à l'Accueil</a>
+</li>
+{% endblock %}
+
+{% block body %}
+<style>
+	#alignement{
+		margin-top: 15%;
+		text-align: center;
+		color: #264653;
+		font-family: serif;
+	}
+	</style>
+
+<h1 id="alignement">Scrapper de Wikipedia</h1>
+		<div class="container">
+			<form action="{{ path('scrapperEnAction')}}" method= "POST">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Nombre d'Articles Wikipedia à Scrapper" name="nombre" id="nombre"/>
+					<div class="input-group-append">
+						<input class="btn btn-outline-primary" type="submit" value="Scrapper"/>
+					</div>
+				</div>
+			<form>
+		</div>
+{% endblock %}
