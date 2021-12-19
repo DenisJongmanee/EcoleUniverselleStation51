@@ -36,11 +36,11 @@ class TestesServiceGaetanController extends AbstractController
         #dump($urlManager->listeUrls(10)))
 
 
-        $liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
-        $erreurListe = $scrapper->scrapListe($liste);
+        #$liste = array('https://fr.wikipedia.org/wiki/Papyrus_66');
+        #$erreurListe = $scrapper->scrapListe($liste);
 
         #dump important : debug des erreurs
-        dump($erreurListe);
+        #dump($erreurListe);
 
 
         $article = $doctrine->getRepository(Article::class)->find(27);
