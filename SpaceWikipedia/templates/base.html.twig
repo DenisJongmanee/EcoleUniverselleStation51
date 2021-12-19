@@ -25,28 +25,36 @@
 	</head>
 	<body>
 
-	<style>
-	a:link 
-	{ 
-		text-decoration:none; 
-	} 
-	</style>
-		
-			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-				<div class="container-fluid">
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="nav-link active" href="">Profil</a>
-						</li>
-						{% block Retour %}
-						{% endblock %}
-					</ul>
+		<style>
+			a:link {
+				text-decoration: none;
+			}
+		</style>
+
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<div class="container-fluid">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" href="">Profil</a>
+					</li>
+					{% block Retour %}{% endblock %}
+				</ul>
+
+				{% if not app.user %}
 					<div class="d-flex">
-						<button type="button" class="btn btn-light"><a href="ressources?search=xxx">Connexion</a></button>
+						<button type="button" class="btn btn-light">
+							<a href="{{ path('connexion')}}">Connexion</a>
+						</button>
 					</div>
-				</div>
-			</nav>
-		{% block body %}
-		{% endblock %}
+				{% else %}
+					<div class="d-flex">
+						<button type="button" class="btn btn-light">
+							<a href="{{ path('deconnexion')}}">Déconnexion</a>
+						</button>
+					</div>
+				{% endif %}
+			</div>
+		</nav>
+		{% block body %}{% endblock %}
 	</body>
-</html>
+</html></body></html>
