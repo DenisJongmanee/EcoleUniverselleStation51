@@ -83,14 +83,17 @@
     Cette procédure va ajouter les classes CSS Bootstrap voulu pour la mise en forme de l'article
     Modification de l'article qui dans la base de données
 
-### feature : findUrls
+## feature : findUrls
 
 L'url https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard est utilisé pour récupérer un lieu au hasard
 Il est utilisé pour scrapper un lien au hasard de wikipédia
 
-## urlAleatoire()
+### urlAleatoire()
     Cette fonction retourne un lien aléatoire de wikipédia
 
-## listeUrls(int $nombre)
+### listeUrls(int $nombre)
     Cette fonction retourne une liste de liens wikipédia générer par urlAleatoire()
     La taille de la liste dépend du paramètre $nombre
+
+## Exception : ImageException
+    Permet de redéfinir le nom de l'exception. Aucune réécriture sur les méthodes
